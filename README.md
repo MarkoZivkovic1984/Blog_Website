@@ -1,23 +1,22 @@
-Blog Website (Flask)
+📝 Blog Website (Flask)
 
 A simple blog web application built with Flask as a practice project, featuring user authentication, commenting, and rich text editing.
 
-Features
+🚀 Features
 User registration and login system
 Create and display blog posts
 Commenting system for authenticated users
 Rich text editing using CKEditor
 Contact form with email sending
 Responsive layout with clean UI
-Tech Stack
+🛠️ Tech Stack
 Python
 Flask
 SQLAlchemy
 Flask-Login
 Flask-WTF
 CKEditor
-
-Installation
+📦 Installation
 
 Clone the repository:
 
@@ -35,7 +34,10 @@ Run the application:
 
 python main.py
 
-Notes
+📌 Notes
+Users must be logged in to leave comments
+Admin-only functionality is implemented for managing posts
+This project is built for learning and practice purposes
 Users must be logged in to leave comments
 Admin-only functionality is implemented for managing posts
 This project is built for learning and practice purposes
