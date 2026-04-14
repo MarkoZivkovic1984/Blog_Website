@@ -41,3 +41,6 @@ This project is built for learning and practice purposes
 Users must be logged in to leave comments
 Admin-only functionality is implemented for managing posts
 This project is built for learning and practice purposes
+
+
+Also it requires Valid Gmail app and valid Password for app from gmail.
