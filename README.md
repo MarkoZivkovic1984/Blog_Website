@@ -17,7 +17,7 @@ Flask-Login
 Flask-WTF
 CKEditor
 
-¦ Installation
+Installation
 
 Clone the repository:
 
