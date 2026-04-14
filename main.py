@@ -36,8 +36,8 @@ ckeditor = CKEditor(app)
 Bootstrap5(app)
 api = requests.get("https://api.npoint.io/c9739ee76f5f7c26c1df")
 # TODO: Configure Flask-Login
-USERNAME = 'pythonsmtlb.1984@gmail.com'
-PASSWORD = "xvlm qclu cgrk hnkv"
+USERNAME = 'E-Mail for APP'
+PASSWORD = "API KEY HERE"
 
 
 # CREATE DATABASE
