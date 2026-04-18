@@ -5,8 +5,6 @@
     <title>Profile</title>
 </head>
 <body>
-
-
 {% if user.profile and user.profile.image_url %}
     <img src="{{ user.profile.image_url }}" width="120">
 {% else %}

@@ -249,6 +249,11 @@ def contact():
         return render_template('contact.html', data=data)
 
 
+@app.context_processor
+def inject_user():
+    return dict(user=current_user)
+
+
 def send_email(name, email, phone, message):
     body = f"""
     Name: {name}
