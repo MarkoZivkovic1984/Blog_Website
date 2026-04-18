@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% from "bootstrap5/form.html" import render_form %} {% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>{{ user.name }}</h2>
+{% if user.profile and user.profile.image_url %}
+    <img src="{{ user.profile.image_url }}" width="120">
+{% else %}
+    <img src="{{ user.email | gravatar }}" width="120">
+{% endif %}
+
+<hr>
+{{ render_form(form) }}
+</body>
+</html>
+{% endblock %}

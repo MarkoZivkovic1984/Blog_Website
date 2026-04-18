@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<h2>{{ user.name }}</h2>
+
+{% if user.profile and user.profile.image_url %}
+    <img src="{{ user.profile.image_url }}" width="120">
+{% else %}
+    <img src="{{ user.email | gravatar }}" width="120">
+{% endif %}
+
+<hr>
+
+<p><strong>Email:</strong> {{ user.email }}</p>
+
+{% if user.profile %}
+    <p><strong>Bio:</strong> {{ user.profile.bio }}</p>
+    <p><strong>Gender:</strong> {{ user.profile.gender }}</p>
+    <p><strong>Birthday:</strong> {{ user.profile.birthday }}</p>
+{% else %}
+    <p><em>No profile information yet</em></p>
+{% endif %}
+
+<br>
+
+<a href="{{ url_for('edit_profile.edit_profile') }}">Edit profile</a>
+</body>
+</html>
