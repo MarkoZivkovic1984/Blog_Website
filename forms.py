@@ -40,3 +40,4 @@ class EditProfileForm(FlaskForm):
     bio = StringField("Tell us about your self.")
     gender = StringField("What is your gender?")
     birthday = DateField("When is your birthday?")
+    submit = SubmitField("Edit Profile")

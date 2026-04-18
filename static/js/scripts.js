@@ -27,3 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
         scrollPos = currentTop;
     });
 })
+function toggleSidebar() {
+    document.getElementById("profileSidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
+}
