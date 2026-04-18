@@ -1,141 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
+<head>
+    <meta charset="utf-8"/>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
     <title>Marko's Blog</title>
     {% block styles %}
     <!-- Load Bootstrap-Flask CSS here -->
     {{ bootstrap.load_css() }}
     <link
-      rel="icon"
-      type="image/x-icon"
-      href="{{ url_for('static', filename='assets/favicon.ico') }}"
+            rel="icon"
+            type="image/x-icon"
+            href="{{ url_for('static', filename='assets/favicon.ico') }}"
     />
     <!-- Font Awesome icons (free version)-->
     <script
-      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
-      crossorigin="anonymous"
+            src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+            crossorigin="anonymous"
     ></script>
     <!-- Google fonts-->
     <link
-      href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-      rel="stylesheet"
-      type="text/css"
+            href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+            rel="stylesheet"
+            type="text/css"
     />
     <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-      rel="stylesheet"
-      type="text/css"
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+            rel="stylesheet"
+            type="text/css"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link
-      href="{{ url_for('static', filename='css/styles.css') }}"
-      rel="stylesheet"
+            href="{{ url_for('static', filename='css/styles.css') }}"
+            rel="stylesheet"
     />
     {% endblock %}
-  </head>
-  <body>
-    <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-      <div class="container px-4 px-lg-5">
+</head>
+<body>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+    <div class="container px-4 px-lg-5">
         <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
         >
-          Menu
-          <i class="fas fa-bars"></i>
+            Menu
+            <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto py-4 py-lg-0">
-            <li class="nav-item">
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="{{ url_for('get_all_posts') }}"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="{{ url_for('about') }}"
-                >About</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="{{ url_for('contact') }}"
-                >Contact</a
-              >
-            </li>
-                        <!-- Only show Login/Register if user is logged out. Otherwise show "Log Out" -->
-            {% if not current_user.is_authenticated: %}
-            <li class="nav-item">
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="{{ url_for('login') }}"
-                >Login</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="{{ url_for('register') }}"
-                >Register</a
-              >
-            </li>
-            {% else: %}
-            <li class="nav-item">
-              <li class="nav-item profile-wrapper">
-    <div class="profile-hover">
+            <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                <li class="nav-item">
+                    <a
+                            class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="{{ url_for('get_all_posts') }}"
+                    >Home</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                            class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="{{ url_for('about') }}"
+                    >About</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                            class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="{{ url_for('contact') }}"
+                    >Contact</a
+                    >
+                </li>
+                <!-- Only show Login/Register if user is logged out. Otherwise show "Log Out" -->
+                {% if not current_user.is_authenticated: %}
+                <li class="nav-item">
+                    <a
+                            class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="{{ url_for('login') }}"
+                    >Login</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                            class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="{{ url_for('register') }}"
+                    >Register</a
+                    >
+                </li>
+                {% else: %}
+                <li class="nav-item">
+                <li class="nav-item profile-wrapper">
+                    <div class="no-scroll-hide" id="profileButton">
+                        <div class="profile-hover">
 
-        <!-- TRIGGER (ONLY SMALL ICON) -->
-        <img class="avatar"
-             src="{{ user.profile.image_url if user.profile and user.profile.image_url else (user.email | gravatar) }}">
+                            <!-- TRIGGER (ONLY SMALL ICON) -->
+                            <img class="avatar"
+                                 src="{{ user.profile.image_url if user.profile and user.profile.image_url else (user.email | gravatar) }}">
 
-        <!-- DROPDOWN -->
-        <div class="dropdown">
+                            <!-- DROPDOWN -->
+                            <div class="dropdown">
 
-            <div class="dropdown-header">
-                <img class="avatar-mini"
-                     src="{{ user.profile.image_url if user.profile and user.profile.image_url else (user.email | gravatar) }}">
-                <span>{{ user.name }}</span>
-            </div>
+                                <div class="dropdown-header">
+                                    <img class="avatar-mini"
+                                         src="{{ user.profile.image_url if user.profile and user.profile.image_url else (user.email | gravatar) }}">
+                                    <span>{{ user.name }}</span>
+                                </div>
 
-            <hr>
+                                <hr>
 
-            <p><strong>Email:</strong> {{ user.email }}</p>
+                                <p><strong>Email:</strong> {{ user.email }}</p>
 
-            {% if user.profile %}
-                <p><strong>Bio:</strong> {{ user.profile.bio }}</p>
-                <p><strong>Gender:</strong> {{ user.profile.gender }}</p>
-                <p><strong>Birthday:</strong> {{ user.profile.birthday }}</p>
-            {% else %}
-                <p><em>No profile information yet</em></p>
-            {% endif %}
+                                {% if user.profile %}
+                                <p><strong>Bio:</strong> {{ user.profile.bio }}</p>
+                                <p><strong>Gender:</strong> {{ user.profile.gender }}</p>
+                                <p><strong>Birthday:</strong> {{ user.profile.birthday }}</p>
+                                {% else %}
+                                <p><em>No profile information yet</em></p>
+                                {% endif %}
 
-            <a href="{{ url_for('edit_profile.edit_profile') }}">Edit profile</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
+                                <a href="{{ url_for('edit_profile.edit_profile') }}">Edit profile</a>
+                                <a href="{{ url_for('logout') }}">Logout</a>
 
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                </li>
+                {% endif %}
+            </ul>
         </div>
     </div>
-</li>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </body>
+</nav>
+</body>
 </html>

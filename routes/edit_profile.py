@@ -16,7 +16,11 @@ edit_profile_bp = Blueprint("edit_profile", __name__)
 def edit_profile():
     form = EditProfileForm()
     profile = current_user.profile
-
+    user_data = db.get_or_404(Profile, current_user.id)
+    if request.method == "GET":
+        form.bio.data = user_data.bio
+        form.gender.data = user_data.gender
+        form.birthday.data = user_data.birthday
     if request.method == "POST":
         profile.bio = request.form.get("bio")
         profile.gender = request.form.get("gender")

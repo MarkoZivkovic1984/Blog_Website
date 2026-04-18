@@ -10900,3 +10900,8 @@ header.masthead .post-heading .meta a {
   color: #ee6f57;
   text-align: center;
 }
+#mainNav.is-fixed .no-scroll-hide {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+}
