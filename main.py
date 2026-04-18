@@ -1,15 +1,13 @@
 from datetime import date
 import smtplib
 from email.mime.text import MIMEText
-from flask import Flask, abort, render_template, redirect, url_for, flash, request
+from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
-from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
+from flask_login import login_user, LoginManager, current_user, logout_user
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
-from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 # Import your forms from the forms.py
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
@@ -17,7 +15,12 @@ from functools import wraps
 from flask import abort
 import requests
 import os
-
+from routes.edit_profile import edit_profile_bp
+from routes.profile import profile_bp
+from extensions import db
+from models.comment_model import CommentPost
+from models.user import UserTable
+from models.blog_post import BlogPost
 '''
 Make sure the required packages are installed: 
 Open the Terminal in PyCharm (bottom left). 
@@ -39,21 +42,15 @@ api = requests.get("https://api.npoint.io/c9739ee76f5f7c26c1df")
 # TODO: Configure Flask-Login
 USERNAME = os.environ.get("Username")
 PASSWORD = os.environ.get("Password")
-DATABASE=os.environ.get("DATABASE_URL")
-print(DATABASE)
-
-
-# CREATE DATABASE
-class Base(DeclarativeBase):
-    pass
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
-db = SQLAlchemy(model_class=Base)
+# db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
-
+app.register_blueprint(profile_bp)
+app.register_blueprint(edit_profile_bp)
 # For adding profile images to the comment section
 gravatar = Gravatar(app,
                     size=100,
@@ -79,48 +76,6 @@ def admin_only(f):
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(UserTable, int(user_id))
-
-
-class UserTable(UserMixin, db.Model):
-    __tablename__ = "users"
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    email: Mapped[str] = mapped_column(String(100), unique=True)
-    password: Mapped[str] = mapped_column(String(100))
-    name: Mapped[str] = mapped_column(String(100))
-
-    # This will act like a List of BlogPost objects attached to each User.
-    # The "author" refers to the author property in the BlogPost class.
-    posts = relationship("BlogPost", back_populates="author")
-    comments = relationship("CommentPost", back_populates="comment_author")
-
-
-class BlogPost(db.Model):
-    __tablename__ = "blog_posts"
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    # Create Foreign Key, "users.id" the users refers to the tablename of User.
-    author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("users.id"))
-    # Create reference to the User object. The "posts" refers to the posts property in the User class.
-    author = relationship("UserTable", back_populates="posts")
-    title: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
-    subtitle: Mapped[str] = mapped_column(String(250), nullable=False)
-    date: Mapped[str] = mapped_column(String(250), nullable=False)
-    body: Mapped[str] = mapped_column(Text, nullable=False)
-    img_url: Mapped[str] = mapped_column(String(250), nullable=False)
-    # Parent relationship to the comments
-    comments = relationship("CommentPost", back_populates="parent_post")
-
-
-class CommentPost(db.Model):
-    __tablename__ = "comment_posts"
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    text: Mapped[str] = mapped_column(String(250), nullable=False)
-    # *******Add child relationship*******#
-    # "users.id" The users refers to the tablename of the Users class.
-    # "comments" refers to the comments property in the User class.
-    author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("users.id"))
-    comment_author = relationship("UserTable", back_populates="comments")
-    post_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("blog_posts.id"))
-    parent_post = relationship("BlogPost", back_populates="comments")
 
 
 with app.app_context():
@@ -318,6 +273,8 @@ def send_email(name, email, phone, message):
             msg.as_string()
         )
 
+
+print(app.url_map)
 
 if __name__ == "__main__":
     app.run(debug=False)

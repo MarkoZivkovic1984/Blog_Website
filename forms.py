@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, EmailField
+from wtforms import StringField, SubmitField, PasswordField, EmailField, DateField
 from wtforms.validators import DataRequired, URL, EqualTo
 from flask_ckeditor import CKEditorField
 
@@ -35,3 +35,8 @@ class CommentForm(FlaskForm):
     text = CKEditorField("Comment", validators=[DataRequired()])
     submit = SubmitField("Post a Comment")
 
+
+class EditProfileForm(FlaskForm):
+    bio = StringField("Tell us about your self.")
+    gender = StringField("What is your gender?")
+    birthday = DateField("When is your birthday?")
