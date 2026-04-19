@@ -12,11 +12,11 @@
     {% block styles %}
     <!-- Load Bootstrap-Flask CSS here -->
     {{ bootstrap.load_css() }}
-    <link
-            rel="icon"
-            type="image/x-icon"
-            href="{{ url_for('static', filename='assets/favicon.ico') }}"
-    />
+<!--    <link-->
+<!--            rel="icon"-->
+<!--            type="image/x-icon"-->
+<!--            href="{{ url_for('static', filename='assets/favicon.ico') }}"-->
+<!--    />-->
     <!-- Font Awesome icons (free version)-->
     <script
             src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
@@ -112,7 +112,9 @@
                                     <img class="avatar-mini"
                                          src="{{ user.profile.image_url if user.profile and user.profile.image_url else (user.email | gravatar) }}">
                                     <span>{{ user.name }}</span>
+                                    <a href="{{ url_for('profile.profile', user_id=current_user.id) }}">View Profile</a>
                                 </div>
+
 
                                 <hr>
 

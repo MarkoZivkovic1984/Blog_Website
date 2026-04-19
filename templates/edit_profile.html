@@ -1,53 +1,66 @@
 <!DOCTYPE html>
-{% from "bootstrap5/form.html" import render_form %} {% block content %}
 <html lang="en">
+{% from "bootstrap5/form.html" import render_form %} {% block content %}
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Marko's Blog</title>
     {% block styles %}
     <!-- Load Bootstrap-Flask CSS here -->
     {{ bootstrap.load_css() }}
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="{{ url_for('static', filename='assets/favicon.ico') }}"
-    />
+    <!--    <link-->
+    <!--            rel="icon"-->
+    <!--            type="image/x-icon"-->
+    <!--            href="{{ url_for('static', filename='assets/favicon.ico') }}"-->
+    <!--    />-->
     <!-- Font Awesome icons (free version)-->
     <script
-      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
-      crossorigin="anonymous"
+            src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+            crossorigin="anonymous"
     ></script>
     <!-- Google fonts-->
     <link
-      href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-      rel="stylesheet"
-      type="text/css"
+            href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+            rel="stylesheet"
+            type="text/css"
     />
     <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-      rel="stylesheet"
-      type="text/css"
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+            rel="stylesheet"
+            type="text/css"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link
-      href="{{ url_for('static', filename='css/styles.css') }}"
-      rel="stylesheet"
+            href="{{ url_for('static', filename='css/styles.css') }}"
+            rel="stylesheet"
     />
     {% endblock %}
 </head>
 <body>
-<h2>{{ user.name }}</h2>
-{% if user.profile and user.profile.image_url %}
-    <img src="{{ user.profile.image_url }}" width="120">
-{% else %}
-    <img src="{{ user.email | gravatar }}" width="120">
-{% endif %}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <h2>{{ user.name }}</h2>
+            {% if user.profile and user.profile.image_url %}
+            <img src="{{ user.profile.image_url }}" width="120">
+            {% else %}
+            <img src="{{ user.email | gravatar }}" width="120">
+            {% endif %}
 
-<hr>
-{{ render_form(form) }}
-      <!-- Bootstrap core JS-->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-      <!-- Core theme JS-->
+            <hr>
+            {{ render_form(form) }}
+            <!-- Bootstrap core JS-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Core theme JS-->
+        </div>
+    </div>
+</div>
 </body>
 </html>
 {% endblock %}
+{% include "footer.html" %}
