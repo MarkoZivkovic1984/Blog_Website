@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Marko's Blog</title>
+    {% block styles %}
+    <!-- Load Bootstrap-Flask CSS here -->
+    {{ bootstrap.load_css() }}
+    <!-- Font Awesome icons (free version)-->
+    <script
+            src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+            crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+            href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+            rel="stylesheet"
+            type="text/css"
+    />
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+            rel="stylesheet"
+            type="text/css"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link
+            href="{{ url_for('static', filename='css/styles.css') }}"
+            rel="stylesheet"
+    />
+    {% endblock %}
+</head>
+<body>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <h2 class="row gx-4 gx-lg-5 justify-content-center">{{ user.name }}</h2>
+            {% if user.profile and user.profile.image_url %}
+            <div class="post-preview">
+                <img src="{{ user.profile.image_url }}" width="120">
+                {% else %}
+                <img src="{{ user.email | gravatar }}" width="120">
+                {% endif %}
+                <hr>
+
+                <p><strong>Email:</strong> {{ user.email }}</p>
+
+                {% if user.profile %}
+                <p><strong>Bio:</strong> {{ user.profile.bio }}</p>
+                <p><strong>Gender:</strong> {{ user.profile.gender }}</p>
+                <p><strong>Birthday:</strong> {{ user.profile.birthday }}</p>
+                {% else %}
+                <p><em>No profile information yet</em></p>
+                {% endif %}
+
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center mb-4">
+<a href="{{ url_for('edit_profile.edit_profile') }}">Edit profile</a>
+    <div class="row justify-content-end">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <a href="{{ url_for('get_all_posts') }}" >Home</a>
+        </div>
+        </div>
+    </div>
+</body>
+{% include "footer.html" %}
