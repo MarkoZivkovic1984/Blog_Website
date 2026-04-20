@@ -3437,7 +3437,7 @@ textarea.form-control-lg {
 
 .dropdown-divider {
   height: 0;
-  margin: var(--bs-dropdown-divider-margin-y) 0;
+  margin: 6px 0;
   overflow: hidden;
   border-top: 1px solid var(--bs-dropdown-divider-bg);
   opacity: 1;
@@ -3446,7 +3446,6 @@ textarea.form-control-lg {
 .dropdown-item {
   display: block;
   width: 100%;
-  padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
   clear: both;
   font-weight: 400;
   color: var(--bs-dropdown-link-color);
@@ -3454,6 +3453,9 @@ textarea.form-control-lg {
   white-space: nowrap;
   background-color: transparent;
   border: 0;
+  padding: 8px 14px;
+  margin: 2px 0;
+  border-radius: 6px;
 }
 .dropdown-item:hover, .dropdown-item:focus {
   color: var(--bs-dropdown-link-hover-color);
@@ -10904,4 +10906,11 @@ header.masthead .post-heading .meta a {
   position: fixed;
   top: 10px;
   right: 20px;
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
