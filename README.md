@@ -1,22 +1,33 @@
-📝 Blog Website (Flask)
+# Blog Backend Service (Flask)
 
-A simple blog web application built with Flask as a practice project, featuring user authentication, commenting, and rich text editing.
+A production-style backend web service built with Flask, PostgreSQL, and Docker.  
+The application supports user authentication, content management, and RESTful APIs, and is deployed in a live environment.
 
-🚀 Features
-User registration and login system
-Create and display blog posts
-Commenting system for authenticated users
-Rich text editing using CKEditor
-Contact form with email sending
-Responsive layout with clean UI
-🛠️ Tech Stack
-Python
-Flask
-SQLAlchemy
-Flask-Login
-Flask-WTF
-CKEditor
-📦 Installation
+## 🚀 Features
+- User authentication (registration, login, session management)
+- CRUD operations for blog posts
+- Comment system with relational data handling
+- REST API endpoints
+- Rich text editing (CKEditor)
+- Email integration (contact form)
+- Deployed with PostgreSQL in production
+
+## 🛠️ Tech Stack
+- Python (Flask)
+- PostgreSQL
+- SQLAlchemy ORM
+- Docker / Docker Compose
+- Flask-Login / Flask-WTF
+- CKEditor
+
+## 🧱 Architecture
+- `routes/` – API and view logic
+- `models/` – database models
+- `extensions.py` – app extensions setup
+- `main.py` – application entry point
+
+## 🌐 Deployment
+The application is containerized and deployed using Docker with a PostgreSQL database on a cloud platform (Render).
 
 Clone the repository:
 
