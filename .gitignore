@@ -8,7 +8,7 @@ __pycache__/
 instance/
 
 # Byte-compiled / optimized / DLL files
-__pycache__/
+
 *.py[codz]
 *$py.class
 
@@ -71,7 +71,7 @@ db.sqlite3
 db.sqlite3-journal
 
 # Flask stuff:
-instance/
+
 .webassets-cache
 
 # Scrapy stuff:
@@ -161,7 +161,6 @@ activemq-data/
 .envrc
 .venv
 env/
-venv/
 ENV/
 env.bak/
 venv.bak/

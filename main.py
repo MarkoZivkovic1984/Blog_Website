@@ -279,7 +279,5 @@ def send_email(name, email, phone, message):
         )
 
 
-print(app.url_map)
-
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run("0.0.0.0", debug=False)

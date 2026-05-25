@@ -96,14 +96,18 @@
                         <div class="profile-hover">
 
                             <!-- TRIGGER (ONLY SMALL ICON) -->
-                            <img class="avatar"
-                                 src="{{ user.profile.image_url if user.profile and user.profile.image_url else (user.email | gravatar) }}">
+                            <img src="{{ user.avatar }}"
+                            width="40"
+                            height="40"
+                                 style="border-radius:50%; object-fit:cover;">
 
                             <!-- DROPDOWN -->
                             <div class="dropdown">
                                 <div class="dropdown-header">
-                                    <img class="avatar-mini"
-                                         src="{{ user.profile.image_url if user.profile and user.profile.image_url else (user.email | gravatar) }}">
+                                    <img src="{{ user.avatar }}"
+                                                width="40"
+                                                height="40"
+                                                style="border-radius:50%; object-fit:cover;">
                                     <span>{{ user.name }}</span>
                                     <a href="{{ url_for('profile.profile', user_id=current_user.id) }}">View Profile</a>
                                 </div>
