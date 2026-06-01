@@ -4,6 +4,6 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - /home/satch/Desktop/SambaShared/Website:/app
+      - .:/app
     environment:
       - FLASK_ENV=development
